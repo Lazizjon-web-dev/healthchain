@@ -10,8 +10,12 @@ async fn main() -> io::Result<()> {
     dotenv().ok();
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
 
-    HttpServer::new(move || App::new().configure(records::config))
-        .bind("0.0.0.0:8000")?
-        .run()
-        .await
+    HttpServer::new(move || {
+        App::new()
+            .configure(records::config)
+            .configure(access::config)
+    })
+    .bind("0.0.0.0:8000")?
+    .run()
+    .await
 }
