@@ -2,6 +2,7 @@ use cache::CacheService;
 use postgres::PostgresRepo;
 
 pub mod cache;
+pub mod models;
 pub mod postgres;
 
 pub struct Database {
